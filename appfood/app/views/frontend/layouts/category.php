@@ -41,7 +41,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
 <body class="grid-page">
-
+<?php echo $this -> system['code_header']; ?>
 <?php $this->load->view('frontend/header');?>
 
 <?php $data = isset($data)?$data:NULL; $this->load->view($template, $data);?>

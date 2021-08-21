@@ -15,9 +15,10 @@
                                 <ul style="display: flex; align-items:center">
 
 
-                                     <?php $tinhot= $this->db->select('*')->from('articles_item')->where(array('publish' => 1, 'parentid' => 10))->order_by('order asc')->get()->result_array(); ?>
+                                     <?php $tinhot= $this->db->select('*')->from('articles_item')->where(array('publish' => 1, 'parentid' => 10))->order_by('created desc')->get()->result_array(); ?>
                                     <?php if(isset($tinhot) && count($tinhot)) { foreach ($tinhot as $key=> $tinhots) { ?>
-                                    <li style="list-style: none; padding-right: 40px;"><span class="noidungbiendong text-green"><b> <a  style="color: #000"><?php echo $tinhots['title']; ?>&emsp;&emsp;</a></b></span>
+                                    <li style="list-style: none; padding-right: 40px;"><span class="noidungbiendong text-green"><b>
+                                    <?php echo gmdate('d/m', strtotime($tinhots['updated'])) ; ?>:  <a  style="color: #000"><?php echo $tinhots['title']; ?>&emsp;&emsp;</a></b></span>
                                     </li>
 
                                 <?php }} ?>

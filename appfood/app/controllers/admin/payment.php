@@ -99,10 +99,17 @@ class Payment extends MY_Controller{
 			$page = $page - 1;
 			$this->pagination->initialize($config);
 			if(!empty($keyword)){
+
+
 				$data['data']['full_data'] = $this->db->query($query_sql, $query_param)->result_array();
+
 			}
 			else{
+
+
 				$data['data']['full_data'] = $this->db->from('payment')->limit($config['per_page'], $page * $config['per_page'])->order_by($sort['field'].' '.$sort['sort'])->get()->result_array();
+
+				
 			}
 			$data['data']['full_page'] = $this->pagination->create_links();
 			$data['data']['total_rows'] = $config['total_rows'];

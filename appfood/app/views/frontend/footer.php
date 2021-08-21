@@ -263,3 +263,332 @@ jQuery(window).scroll(function () {
      jQuery('#sidebar').removeClass('fixed');
 });
 </script>
+
+
+
+<a id="btn-zalo" href="http://zalo.me/<?php echo $this -> system['hotline']; ?>" target="_blank">
+    <div class="animated infinite zoomIn kenit-alo-circle"></div>
+    <div class="animated infinite pulse kenit-alo-circle-fill"></div>
+    <span><img src="template/frontend/images/zalo-icon.png" alt="Zalo"></span>
+</a>
+<style type="text/css">
+	
+
+    .socialList li, .contactList li{
+        border: 2px solid;
+        border-radius: 50%;
+    }
+    .socialList li a:hover{
+        background:none !important;
+    }
+    #btn-zalo {
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        left: 15px;
+        bottom: 135px;
+        z-index: 99999999999;
+    }
+    
+    #btn-zalo span {
+        display: flex;
+        display: -ms-flex;
+        align-items: center;
+        -ms-flex-align: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #1182FC;
+        position: relative;
+    }
+    
+    #btn-zalo span img {
+        vertical-align: middle;
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 26px;
+        height: 26px;
+    }
+    #toTop {
+
+    	border-radius: px;
+    	left: 10px !important;
+    }
+    
+    .kenit-alo-circle-fill {
+        width: 60px;
+        height: 60px;
+        top: -10px;
+        position: absolute;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        border: 2px solid transparent;
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+        transition: all .5s;
+        background-color: rgba(17, 130, 252, 0.45);
+        opacity: .75;
+        right: -10px;
+    }
+    
+    .kenit-alo-circle {
+        width: 50px;
+        height: 50px;
+        top: -5px;
+        right: -5px;
+        position: absolute;
+        background-color: transparent;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        border: 2px solid rgba(17, 130, 252, .8);
+        opacity: .1;
+        border-color: #1182FC;
+        opacity: .5;
+    }
+@keyframes stuckMoveDown{0%{transform:translateY(-100%)}100%{transform:translateY(0)}}
+@keyframes stuckFadeIn{0%{opacity:0}100%{opacity:1}}
+
+.main-nav.fixed {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+    animation: stuckMoveDown .6s;
+}
+@-moz-keyframes run {
+    0% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    25% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    50% {
+        top: 0px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    75% {
+        top: 100px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    100% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+}
+
+@-webkit-keyframes run {
+    0% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    25% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    50% {
+        top: 0px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    75% {
+        top: 100px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    100% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+}
+
+@-o-keyframes run {
+    0% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    25% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+
+    50% {
+        top: 0px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    75% {
+        top: 100px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    100% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 3;
+    }
+}
+
+@-moz-keyframes runnow {
+    0% {
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+    }
+
+    25% {
+        top: 100px;
+        left: 0;
+        z-index: 1;
+    }
+
+    50% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    75% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0;
+        z-index: 1;
+    }
+}
+
+@-webkit-keyframes runnow {
+    0% {
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+    }
+
+    25% {
+        top: 100px;
+        left: 0;
+        z-index: 1;
+    }
+
+    50% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    75% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0;
+        z-index: 1;
+    }
+}
+
+@-o-keyframes runnow {
+    0% {
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+    }
+
+    25% {
+        top: 100px;
+        left: 0;
+        z-index: 1;
+    }
+
+    50% {
+        top: 100px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    75% {
+        top: 0px;
+        left: calc(100% - 320px);
+        z-index: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0;
+        z-index: 1;
+    }
+}
+#btn-chat-facebook {display: block;width: 40px;height: 40px;position: fixed;right: 20px;bottom: 213px;z-index: 99999999999;}
+#btn-chat-facebook span {
+    display: flex; display: -ms-flex; align-items: center;
+     -ms-flex-align: center; width: 40px; height: 40px; border-radius: 50%;
+     background: #1182FC; position: relative;}
+#btn-chat-facebook span img {     vertical-align: middle;
+position: absolute;
+top: 0;
+left: 0;
+width: 40px;
+height: 40px; }
+
+.chat-facebook-fill {width: 60px; height: 60px; top: -10px; position: absolute; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -ms-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; border: 2px solid transparent; -webkit-transition: all .5s; -moz-transition: all .5s; -o-transition: all .5s; transition: all .5s; background-color: rgba(17, 130, 252, 0.45); opacity: .75; right: -10px; }
+.chat-facebook {width: 50px; height: 50px; top: -5px; right: -5px; position: absolute; background-color: transparent; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; border: 2px solid rgba(17, 130, 252, .8); opacity: .1; border-color: #1182FC; opacity: .5; }
+#khungchatn{
+position:fixed;
+width:300px;
+height:350px;
+top:100px;
+right:10px;
+z-index:999999;
+background:#fff;
+border-radius:10px;
+overflow:hidden;
+display:none;
+}
+#google_translate_element{
+    position: absolute;
+    right: 0px;
+    top: 3px;
+    height: 27px;
+    overflow: hidden;
+    z-index: 9;
+}
+
+</style>
