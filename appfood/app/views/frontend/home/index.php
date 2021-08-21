@@ -33,7 +33,7 @@
                               <div class='tp-caption sfb  tp-resizeme ' data-endspeed='500' data-speed='500'
                                 data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none'
                                 data-elementdelay='0.1' data-endelementdelay='0.1'
-                                style='z-index:4; white-space:nowrap;'><a href='#' class="buy-btn">XEM THÊM</a> </div>
+                                style='z-index:4; white-space:nowrap;'><a href='<?php echo $value['address']; ?>' class="buy-btn">XEM THÊM</a> </div>
                             </div>
                           </div>
                         </div>
@@ -400,7 +400,8 @@
             </div>
           </div>
           <div class="col-lg-3">
-            <div class="testimonials">
+             <h2>REVIEWS</h2>
+            <div class="testimonials" style="padding-top: 0px">
               <div class="ts-testimonial-widget">
                 <div class="slider-items-products">
                   <div id="testimonials-slider" class="product-flexslider hidden-buttons home-testimonials">
@@ -521,12 +522,15 @@
 
 
     <section class="home-articles spacer-medium">
+      <div class="block-title container">
+            <h2>THÔNG TIN Y TẾ </h2>
+          </div>
       <div class="container css-grid--columns-2">
         <div class="column-left">
 
             <?php $banner = $this->db->select('*')->from('articles_item')->where(array('publish' => 1, 'highlight'=> 1))->order_by('order asc')->get()->result_array(); ?>
             <?php if(isset($banner) && count($banner)) { foreach($banner as $key => $value) { if($key<2) {?>
-          <div class="article-home">
+          <div class="article-home " style="margin-bottom: 15px">
             <div class="article-home__image parallax-parent">
               <img src="<?php  echo helper_string_image(278,278, $value['image']); ?>" class="parallax-child--second" alt="article image">
             </div>
@@ -569,6 +573,16 @@
       </div>
 
     </section>
+<style>
+  .block-title.container {
+    text-align: center;
+    padding-bottom: 29px;
+}
 
+.block-title.container h2 {
+    font-size: 35px;
+    font-weight: bold;
+}
+</style>
     <!-- End Latest Blog -->
 

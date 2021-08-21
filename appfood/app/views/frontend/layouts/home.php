@@ -44,6 +44,7 @@
 </head>
 <body class="cms-index-index cms-home-page home">
 <!--HEADER-->
+<?php echo $this -> system['code_header']; ?>
 <?php $this->load->view('frontend/header');?>
 
 <?php $data = isset($data)?$data:NULL; $this->load->view($template, $data);?>

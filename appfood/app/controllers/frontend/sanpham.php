@@ -152,14 +152,14 @@ class Sanpham extends MY_Controller{
 				//End Setting
 
 				$mail->AddCC('dotrongnam2307200@gmail.com', 'Nam');
-				$mail->AddCC(''.$this->system['email'].'', 'GARAMINHQUANG');
+				$mail->AddCC(''.$this->system['email'].'', 'SINHVIEN_HAUI');
 				$mail->CharSet = "utf-8";
-				$mail->setFrom(''.$this->system['email'].'', 'GARAMINHQUANG');
+				$mail->setFrom(''.$this->system['email'].'', 'SINHVIEN_HAUI');
 				// $mail->AddAddress($post_data['email'], $post_data['fullname']);
 				//$mail->AddReplyTo('depraiketao@gmail.com','日本はいいね');
 				$mail->WordWrap = 50; // set word wrap
 				$mail->IsHTML(true); // send as HTML
-				$mail->Subject = '[GARAMINHQUANG] Liên hệ khách hàng '.$post_data['fullname'];
+				$mail->Subject = '[SINHVIEN_HAUI] Liên hệ khách hàng '.$post_data['fullname'];
 				$mail->Body = $email_body;
 				$mail->AltBody = ""; //Text Body
 				$mail->SMTPDebug = 0;
@@ -462,7 +462,7 @@ class Sanpham extends MY_Controller{
 						<tbody>
 							<tr>
 								<td>
-									<h1 style="font-family:tahoma;color:#ffffff;font-size:24px">Xác nhận thông tin đơn hàng số #GIAHUNGPRO'.$donhang['id'].'</h1> </td>
+									<h1 style="font-family:tahoma;color:#ffffff;font-size:24px">Xác nhận thông tin đơn hàng số #SINHVIEN_HAUI'.$donhang['id'].'</h1> </td>
 							</tr>
 						</tbody>
 					</table>
@@ -478,12 +478,12 @@ class Sanpham extends MY_Controller{
 							<tr>
 								<td height="18" valign="top" style="border-bottom:20px #ffffff solid">
 									<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Kính chào '.$data['data']['post_data']['fullname'].' !</p>
-									<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Cảm ơn quý khách đã gửi thông tin cho GIAHUNGPRO. Sau đây là thông tin của quý khách:</p>
+									<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Cảm ơn quý khách đã gửi thông tin cho SINHVIEN_HAUI. Sau đây là thông tin của quý khách:</p>
 								</td>
 							</tr>
 							<tr>
 								<td valign="top">
-									<h1 style="font-family:tahoma;margin:0;color:#000000;font-size:20px;border-top:1px solid #efefef;padding-bottom:15px;padding-top:15px">Thông tin chi tiết số #GIAHUNGPRO'.$donhang['id'].'</h1> </td>
+									<h1 style="font-family:tahoma;margin:0;color:#000000;font-size:20px;border-top:1px solid #efefef;padding-bottom:15px;padding-top:15px">Thông tin chi tiết số #SINHVIEN_HAUI'.$donhang['id'].'</h1> </td>
 							</tr>
 							<tr>
 								<td>
@@ -570,7 +570,7 @@ class Sanpham extends MY_Controller{
 					//$mail->AddReplyTo('depraiketao@gmail.com','日本はいいね');
 					$mail->WordWrap = 50; // set word wrap
 					$mail->IsHTML(true); // send as HTML
-					$mail->Subject = '['.$this->system['meta_title'].'] Thông tin báo giá số #GIAHUNGPRO'.$donhang['id'];
+					$mail->Subject = '['.$this->system['meta_title'].'] Thông tin báo giá số #SINHVIEN_HAUI'.$donhang['id'];
 					$mail->Body = $email_body;
 					$mail->AltBody = ""; //Text Body
 					$mail->SMTPDebug = 0;

@@ -5519,6 +5519,9 @@ a.button.detail-bnt span {
 	margin-right: 5px;
 	margin-left: 5px;
 }
+.article-home__image.parallax-parent img {
+    border-radius: 20px;
+}
 .latest-product .old-price .price-label {
 	display: none;
 }
@@ -5576,14 +5579,20 @@ section.home-articles {
 	float: left;
 	width: 50%;
 	padding-right: 15px;
+	/* border: 1px solid red; */
 }
 .column-right {
 	float: right;
 	width: 50%;
 	padding-left: 15px;
+	/* border: 1px solid red; */
 }
 .article-home {
 	display: flex;
+	align-items: center;
+	border-radius: 20px;
+	border: 1px solid #8888;
+	box-shadow: 3px 2px 5px #888;
 }
 .article-home .article-home__image {
 	flex: 0 0 50%;

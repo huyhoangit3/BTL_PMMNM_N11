@@ -43,6 +43,7 @@
 <body class="product-page blog-page category-page">
 
 <!--HEADER-->
+<?php echo $this -> system['code_header']; ?>
 <?php $this->load->view('frontend/header');?>
 
 <?php $data = isset($data)?$data:NULL; $this->load->view($template, $data);?>
