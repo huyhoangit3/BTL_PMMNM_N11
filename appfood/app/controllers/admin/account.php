@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+  <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Account extends MY_Controller{
 
@@ -8,7 +8,8 @@ class Account extends MY_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->auth = $this->lib_authentication->check();
-		if($this->auth == NULL) die($this->lib_common->js_redirect(CMS_BACKEND.'/home/index'.CMS_SUFFIX));
+		if($this->auth == NULL) die($this->lib_common->js_redirect(CMS_BACKEND.'/home/index'.CMS_SUFFIX,'Chưa đăng nhập'));
+
 		$this->menu_active = 'menu-account';
 	}
 

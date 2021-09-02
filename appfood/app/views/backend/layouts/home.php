@@ -48,43 +48,7 @@
 		</script>
         
         <ul class="nav navbar-nav pull-right">
-            <!-- BEGIN NOTIFICATION DROPDOWN -->
-            <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
-                    <i class="fa fa-bullseye"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="external">
-                            <h3>Không có thông báo mới nào</h3>
-                    </li>
-                </ul>
-            </li>
-            <!-- END NOTIFICATION DROPDOWN -->
-            <!-- BEGIN INBOX DROPDOWN -->
-            <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
-                    <i class="fa fa-envelope"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="external">
-                            <h3>Không có email mới nào</h3>
-                    </li>
-                </ul>
-            </li>
-            <!-- END INBOX DROPDOWN -->
-            <!-- BEGIN TODO DROPDOWN -->
-            <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
-                    <i class="fa fa-tasks"></i>
-                </a>
-                <ul class="dropdown-menu extended tasks">
-                    <li class="external">
-                            <h3>Không có hoạt động mới nào</h3>
-                    </li>
-                </ul>
-            </li>
-            <!-- END TODO DROPDOWN -->
-            <!-- BEGIN USER LOGIN DROPDOWN -->
+            
 
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown dropdown-user">

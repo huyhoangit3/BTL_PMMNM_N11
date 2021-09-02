@@ -2,7 +2,8 @@
 
 class Sanpham extends MY_Controller{
 
-	public function category($parentid = 0, $page = 1){
+	public function category($parentid = 0, $page = 1)
+	{
 		if(!isset($_SESSION['sort'])) {
 	      	$_SESSION['sort'] = 'id_desc';
 	   	}
@@ -14,6 +15,7 @@ class Sanpham extends MY_Controller{
 		$parentid = (int)$parentid;
 		$page = (int)$page;
 		$category = $this->db->from('sanpham_category')->where(array('id' => $parentid, 'publish' => 1))->get()->row_array();
+
 		if(!isset($category) || count($category) == 0) die($this->lib_common->js_redirect(CMS_URL));
 		$config['use_page_numbers'] = TRUE;
 		if($category['rgt'] - $category['lft'] > 1){
@@ -56,8 +58,7 @@ class Sanpham extends MY_Controller{
 		$this->load->view('frontend/layouts/category', $data);
 	}
 	public function GetImageFromUrl($link)
-
-		{
+	{
 
 		$ch = curl_init();
 
@@ -72,9 +73,11 @@ class Sanpham extends MY_Controller{
 		curl_close($ch);
 
 		return $result;
+	}
+	
 
-		}
-	public function item($id = 0){
+	public function item($id = 0)
+	{
 		if($this->input->post('sent')){
 			$post_data = $this->input->post('data'); 
 			$data['post_data'] = $post_data;
@@ -242,72 +245,6 @@ class Sanpham extends MY_Controller{
 	}
 
 
-
-	public function tags_detail($page = 1){
-		$config['use_page_numbers'] = TRUE;
-		$config['total_rows'] = $this->db->from('tags')->where(array('publish' => 1))->count_all_results();
-		$config['base_url'] = 'chu-de-';
-		$config['per_page'] = 68;
-		$total = ceil($config['total_rows']/$config['per_page']);
-		$page = ($page <= 0)?1:$page;
-		$page = ($page >= $total)?$total:$page;
-		$config['cms_cur_page'] = $page;
-		if($total > 0){
-			$page = $page - 1;
-			$this->pagination->initialize($config);
-			$data['data']['list'] = $this->db->from('tags')->where(array('publish' => 1))->limit($config['per_page'], $page * $config['per_page'])->order_by('id desc')->get()->result_array();
-			$data['data']['pagination'] = $this->pagination->create_links();
-			$data['data']['total_rows'] = $config['total_rows'];
-			$data['data']['per_page'] = $config['per_page'];
-			$data['data']['page'] = $page;
-		}
-		$data['data']['meta_title'] = 'Danh sách các chủ đề đang có tại website '.$this->system['name'].(($page > 0)?' - trang '.($page+1):'');
-		$data['data']['meta_keywords'] = $this->system['meta_keywords'];
-		$data['data']['meta_description'] = 'Danh sách các chủ đề đang có tại website '.$this->system['name'].', hiện website đang có '.$config['total_rows'].' chủ đề'.(($page > 0)?' - trang '.($page+1):'');;
-		$data['data']['canonical'] = CMS_URL.(($page == 0)?'chu-de':'chu-de-p'.($page+1)).CMS_SUFFIX;
-		$data['data']['rel_prev'] = ($page > 0)?CMS_URL.'chu-de-p'.($page).CMS_SUFFIX:'';
-		$data['data']['rel_next'] = ($page < ($total - 1))?CMS_URL.'chu-de-p'.($page+2).CMS_SUFFIX:'';
-		$data['template'] = 'frontend/sanpham/tags_detail';
-		$this->load->view('frontend/layouts/home', $data);
-	}
-
-
-	public function tags($alias = '', $page = 1){
-		$alias = preg_replace('/[^a-z0-9-]+/i', '', $alias);
-		$page = (int)$page;
-		$tag = $this->db->from('tags')->where(array('alias' => $alias, 'publish' => 1))->get()->row_array();
-		if(!isset($tag) || count($tag) == 0) die($this->lib_common->js_redirect(CMS_URL));
-		$config['use_page_numbers'] = TRUE;
-		$query_sql = 'SELECT * FROM '.CMS_PREFIX.'sanpham_item WHERE (`tags` LIKE ?)';
-		$query_param = array('%'.$tag['title'].'%');
-		$config['total_rows'] = $this->db->query($query_sql, $query_param)->num_rows();
-		$config['base_url'] = 'chu-de/'.$alias.'-';
-		$config['per_page'] = 10;
-		$total = ceil($config['total_rows']/$config['per_page']);
-		$page = ($page <= 0)?1:$page;
-		$page = ($page >= $total)?$total:$page;
-		$config['cms_cur_page'] = $page;
-		if($total > 0){
-			$page = $page - 1;
-			$this->pagination->initialize($config);
-			$query_sql = 'SELECT * FROM '.CMS_PREFIX.'sanpham_item WHERE (`tags` LIKE ?) AND `publish` = 1 ORDER BY `id` DESC LIMIT '.($page * $config['per_page']).', '.$config['per_page'];
-			$query_param = array('%'.$tag['title'].'%');
-			$data['data']['list'] = $this->db->query($query_sql, $query_param)->result_array();
-			$data['data']['pagination'] = $this->pagination->create_links();
-			$data['data']['total_rows'] = $config['total_rows'];
-			$data['data']['per_page'] = $config['per_page'];
-			$data['data']['page'] = $page;
-		}
-		$data['data']['tag'] = $tag;
-		$data['data']['meta_title'] = (!empty($tag['meta_title'])?$tag['meta_title']:mb_convert_case($tag['title'], MB_CASE_TITLE, 'UTF-8').' | Tags bài viết').(($page > 0)?' - trang '.($page+1):'');
-		$data['data']['meta_keywords'] = !empty($tag['meta_keyword'])?$tag['meta_keyword']:$tag['title'];
-		$data['data']['meta_description'] = (!empty($tag['meta_description'])?$tag['meta_description']:'Tổng hợp bài viết thuộc chủ đề '.$tag['title'].', những bài viết hay về chủ đề '.$tag['title'].' dành cho bạn.').(($page > 0)?' - trang '.($page+1):'');
-		$data['data']['canonical'] = CMS_URL.(($page == 0)?'chu-de/'.$alias:'chu-de/'.$alias.'-p'.($page+1)).CMS_SUFFIX;
-		$data['data']['rel_prev'] = ($page > 0)?CMS_URL.'chu-de/'.$alias.'-p'.($page).CMS_SUFFIX:'';
-		$data['data']['rel_next'] = ($page < ($total - 1))?CMS_URL.'chu-de/'.$alias.'-p'.($page+2).CMS_SUFFIX:'';
-		$data['template'] = 'frontend/sanpham/tags';
-		$this->load->view('frontend/layouts/home', $data);
-	}
 	public function addtocart($itemid = NULL){
 		$itemid = (int)$itemid;
 		$products_item = $this->db->from('sanpham_item')->where(array('id' => $itemid))->get()->row_array();

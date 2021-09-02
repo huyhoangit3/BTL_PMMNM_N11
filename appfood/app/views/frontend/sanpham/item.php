@@ -184,13 +184,7 @@
                                      ?>%
 
                                   </div>
-                                  <div class="box-hover">
-                                    <ul class="add-to-links">
-                                      <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                      <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                      <li><a class="link-compare" href="compare.html"></a> </li>
-                                    </ul>
-                                  </div>
+                                  
                                 </div>
                               </div>
                               <div class="item-info">
@@ -268,13 +262,7 @@
                                      ?>%
 
                                   </div>
-                                  <div class="box-hover">
-                                    <ul class="add-to-links">
-                                      <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                      <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                      <li><a class="link-compare" href="compare.html"></a> </li>
-                                    </ul>
-                                  </div>
+                                  
                                 </div>
                               </div>
                               <div class="item-info">

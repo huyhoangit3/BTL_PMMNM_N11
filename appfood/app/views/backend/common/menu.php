@@ -6,7 +6,7 @@
 			<li class="dropdown-item"><a href="<?php echo CMS_BACKEND.'/authentication/logout'.CMS_SUFFIX;?>" class="item">Đăng xuất</a></li> 
 		</ul>
 	</li>
-	<?php if($this->auth['group'] == 'Người quản lý'){ ?>
+	
 	<li class="nav-item" id="menu-sanpham">
 		<a href="<?php echo CMS_BACKEND.'/sanpham/item'.CMS_SUFFIX;?>" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
 		<ul class="dropdown-menu">
@@ -41,6 +41,7 @@
 			<li class="dropdown-item"><a href="<?php echo CMS_BACKEND.'/grouplink/additem'.CMS_SUFFIX;?>" class="item">Thêm Banner</a></li>
 		</ul>
 	</li>
+	<?php if($this->auth['group'] == 'Người quản lý'){ ?>
 
 	<li class="nav-item" id="menu-payment">
 		<a href="<?php echo CMS_BACKEND.'/payment/index'.CMS_SUFFIX;?>" class="nav-link">Đơn hàng</a>

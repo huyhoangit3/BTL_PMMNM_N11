@@ -118,9 +118,9 @@
             </div>
             <span class="field-validation-valid color-red" data-valmsg-for="" data-valmsg-replace="true"></span>
         </form>
-        <div class="register">
+        <!-- <div class="register">
             Bạn chưa có tài khoản?<a data-toggle="modal" data-target="#myModal" style="cursor: pointer;">Đăng ký ngay</a>
-        </div>
+        </div> -->
     </div>
     <br />
 </div>
