@@ -78,100 +78,7 @@ class Sanpham extends MY_Controller{
 
 	public function item($id = 0)
 	{
-		if($this->input->post('sent')){
-			$post_data = $this->input->post('data'); 
-			$data['post_data'] = $post_data;
-			$this->form_validation->set_rules('data[fullname]', 'Tên đầy đủ', 'trim|required');
-			$this->form_validation->set_rules('data[phone]', 'Số điện thoại', 'trim|required');
-			$this->form_validation->set_rules('data[email]', 'Email', 'trim');
-			$this->form_validation->set_rules('data[tensanpham]', 'Tên dịch vụ', 'trim|required');
-			$this->form_validation->set_rules('data[notes]', 'Nội dung liên hệ', 'trim');
-			
-			$this->form_validation->set_error_delimiters('<li>', '</li>');
-			if($this->form_validation->run() == TRUE){
-				$post_data['publish'] = 1;
-				$post_data['created'] = gmdate('Y-m-d H:i:s', time() + 7*3600);
-				$this->db->insert('contacts', $post_data);
-				require APPPATH.'third_party/PHPMailer/class.phpmailer.php'; 
-				require APPPATH.'third_party/PHPMailer/class.smtp.php';
-
-				$email_body='<div id=":zv" class="ii gt adP adO">
-				<div id=":1k2" class="a3s aXjCH m15e266d50c22d048">
-				<div>
-				<div class="adM"> </div>
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height:1.5em">
-				<tbody>
-				<tr>
-					<td bgcolor="#00918c" style="border-top:#007773 2px solid">
-					<table width="700" border="0" cellspacing="0" cellpadding="0" align="center" style="border-top:#00918c 10px solid;border-bottom:#00918c 10px solid">
-						<tbody>
-							<tr>
-								<td>
-									<h1 style="font-family:tahoma;color:#ffffff;font-size:24px">
-									Thông tin liên hệ khách hàng: 
-									</h1> 
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					</td>
-					</tr>
-				<tr>
-				<td bgcolor="#efefef">
-				<table width="700" border="0" cellspacing="0" cellpadding="3" align="center" style="border-bottom:20px solid #ffffff;background:#fff;padding:15px">
-					<tbody>
-						
-						<tr>
-							<td height="18" valign="top" style="border-bottom:20px #ffffff solid">
-								<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Tên khách hàng: '.$post_data['fullname'].'</p>
-								<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Số điện thoại: '.$post_data['phone'].'</p>
-								<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Tên dịch vụ: '.$post_data['tensanpham'].'</p>							
-								<p style="font-family:tahoma;font-size:14px;font-weight:700;color:#363636;line-height:1.5em">Nội dung liên hệ: '.$post_data['notes'].'</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</td>
-				</tr>
-				</tbody>
-				</table>
-				
-				</div>
-				</div>
-				<div class="yj6qo"></div>
-				</div>';
-			    
-				$mail = new PHPMailer();
-				$mail->IsSMTP(); // set mailer to use SMTP
-				$mail->Host = "smtp.gmail.com"; // specify main and backup server
-				$mail->Port = 465; // set the port to use 
-				$mail->SMTPAuth = true; // turn on SMTP authentication
-				$mail->SMTPSecure = 'ssl'; 
-				//$mail->Username = "no.reply.email.192@gmail.com"; // your SMTP username or your gmail username
-				//$mail->Password = "yutfsjdzqbjfoolo"; // your SMTP password or your gmail password
-				$mail->Username = "no.reply.email.192@gmail.com"; // your SMTP username or your gmail username
-				$mail->Password = "yutfsjdzqbjfoolo"; // your SMTP password or your gmail password
-				$mail->FromName = 'no-reply'; // Name to indicate where the email came from when the recepient received
-				//End Setting
-
-				$mail->AddCC('dotrongnam2307200@gmail.com', 'Nam');
-				$mail->AddCC(''.$this->system['email'].'', 'SINHVIEN_HAUI');
-				$mail->CharSet = "utf-8";
-				$mail->setFrom(''.$this->system['email'].'', 'SINHVIEN_HAUI');
-				// $mail->AddAddress($post_data['email'], $post_data['fullname']);
-				//$mail->AddReplyTo('depraiketao@gmail.com','日本はいいね');
-				$mail->WordWrap = 50; // set word wrap
-				$mail->IsHTML(true); // send as HTML
-				$mail->Subject = '[SINHVIEN_HAUI] Liên hệ khách hàng '.$post_data['fullname'];
-				$mail->Body = $email_body;
-				$mail->AltBody = ""; //Text Body
-				$mail->SMTPDebug = 0;
-				$mail->Send();
-
-				//END XÁC NHẬN
-				die('<script type="text/javascript">alert(\'Cảm ơn bạn đã gửi thông tin cho chúng tôi!\');location.href=\''.CMS_URL.'\';</script>');
-			}
-		} 
+		
 		$id = (int)$id;
 		$item = $this->db->from('sanpham_item')->where(array('id' => $id, 'publish' => 1))->get()->row_array();
 		if(!isset($item) || count($item) == 0) die($this->lib_common->js_redirect(CMS_URL));
@@ -197,38 +104,8 @@ class Sanpham extends MY_Controller{
 				$this->db->where(array('id' => $item['id']))->update('sanpham_item', array('image' => 'upload/crawler/'.$file));
 			}
 		}
-		if(!isset($view_sanpham_item) || empty($view_sanpham_item)){
-			$this->session->set_userdata('view_sanpham_item_'.$item['id'], 'ok');
-			$rand = rand(0, 5);
-			$value = rand(3, 5);
-			if($rand == 5){
-				$this->db->set('rate_value', 'rate_value + '.$value, FALSE)->set('rate_total', 'rate_total + 1', FALSE)->where(array('id' => $id))->update('sanpham_item');
-				$item['rate_value'] = $item['rate_value'] + $value;
-				$item['rate_total'] = $item['rate_total'] + 1;
-			}
-			$this->db->set('viewed', 'viewed + 1', FALSE)->where(array('id' => $item['id']))->update('sanpham_item');
-			$item['viewed']++;
-		}
-		if(!empty($item['tags'])){
-			$tags = $this->lib_tags->tags($item['tags']);
-			if(isset($tags) && count($tags)){
-				$field = '';
-				$query_param = NULL;
-				$count = count($tags);
-				foreach($tags as $key => $val){
-					if($count == $key+1){
-						$field = $field.'`tags` LIKE ?';
-					}
-					else{
-						$field = $field.'`tags` LIKE ? OR ';
-					}
-					$query_param[] = '%'.$val.'%';
-				}
-				$query_sql = 'SELECT * FROM '.CMS_PREFIX.'sanpham_item WHERE ('.$field.') AND `id` != '.$item['id'].' LIMIT 0, 10';
-				$data['data']['related'] = $this->db->query($query_sql, $query_param)->result_array();
-			}
-		}
-
+		
+		
 		$data['data']['item'] = $item;
 		$data['data']['category'] = $category;
 		$data['data']['meta_title'] = (!empty($item['meta_title'])?$item['meta_title']:$item['title']);

@@ -55,13 +55,4 @@ class System extends MY_Controller{
 		$this->load->view('backend/layouts/home', $data);
 	}
 
-	public function config(){
-		$data['meta_title'] = 'Cấu hình nâng cao';
-		$data['meta_keywords'] = '';
-		$data['meta_description'] = '';
-		$data['menu_active'] = $this->menu_active;
-		$data['template'] = 'backend/system/config';
-		$this->load->view('backend/layouts/home', $data);
-	}
-
 }

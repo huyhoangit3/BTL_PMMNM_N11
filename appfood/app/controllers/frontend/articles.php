@@ -9,9 +9,11 @@ class Articles extends MY_Controller{
 		$page = (int)$page;
 
 
-		// sử dụng câu lệnh để truy vấn đến danh mục bài viết và bài viết
+		// Xây dựng biến cho trang danh mục bv
 		$category = $this->db->from('articles_category')->where(array('id' => $parentid, 'publish' => 1))->get()->row_array();
+		// Xây dựng biến cho trang chi tiết
 		$items = $this->db->from('articles_item')->where(array('parentid' => $category['id'], 'publish' => 1))->get()->result_array();
+
 		if(count($items)==1){
 			header("Location:".CMS_URL.helper_string_alias($items[0]['title']).'-a'.$items[0]['id'].CMS_SUFFIX);die;
 			}
@@ -94,37 +96,7 @@ class Articles extends MY_Controller{
 		$item['content'] = html_entity_decode($item['content'], ENT_QUOTES, 'UTF-8');
 		$alias = $this->lib_string->alias($item['title']);
 		
-		if(isset($view_articles_item) || empty($view_articles_item)){
-			$this->session->set_userdata('view_articles_item_'.$item['id'], 'ok');
-			$rand = rand(3, 5);
-			$value = rand(3, 5);
-			if($rand == 5){
-				$this->db->set('rate_value', 'rate_value + '.$value, FALSE)->set('rate_total', 'rate_total + 1', FALSE)->where(array('id' => $id))->update('articles_item');
-				$item['rate_value'] = $item['rate_value'] + $value;
-				$item['rate_total'] = $item['rate_total'] + 1;
-			}
-			$this->db->set('viewed', 'viewed + 1', FALSE)->where(array('id' => $item['id']))->update('articles_item');
-			$item['viewed']++;
-		}
-		if(!empty($item['tags'])){
-			$tags = $this->lib_tags->tags($item['tags']);
-			if(isset($tags) && count($tags)){
-				$field = '';
-				$query_param = NULL;
-				$count = count($tags);
-				foreach($tags as $key => $val){
-					if($count == $key+1){
-						$field = $field.'`tags` LIKE ?';
-					}
-					else{
-						$field = $field.'`tags` LIKE ? OR ';
-					}
-					$query_param[] = '%'.$val.'%';
-				}
-				$query_sql = 'SELECT * FROM '.CMS_PREFIX.'articles_item WHERE ('.$field.') AND `id` != '.$item['id'].' LIMIT 0, 10';
-				$data['data']['related'] = $this->db->query($query_sql, $query_param)->result_array();
-			}
-		}
+		
 		$data['data']['item'] = $item;
 		$data['data']['category'] = $category;
 		$data['data']['meta_title'] = (!empty($item['meta_title'])?$item['meta_title']:$item['title']);

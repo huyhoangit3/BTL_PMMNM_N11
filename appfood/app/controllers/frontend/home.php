@@ -12,20 +12,33 @@ class Home extends MY_Controller {
 		{
 			$keyword = $_GET['s'];
 			$page=0;
-			if(isset($_GET['p'])&&count($_GET['p'])){$page = $_GET['p']; $page = isset($page)?(int)$page:0;}
+
+
+			if(isset($_GET['p'])&&count($_GET['p']))
+			{
+				$page = $_GET['p']; $page = isset($page)?(int)$page:0;
+			}
+
+			// câu lệnh tìm kiếm
 			$query_sql = 'SELECT * FROM '.CMS_PREFIX.'sanpham_item WHERE (`title` LIKE ? OR `description` LIKE ? OR `content` LIKE ?)';
+
 			$query_param = array('%'.$keyword.'%', '%'.$keyword.'%', '%'.$keyword.'%');
-			$config['total_rows'] = $this->db->query($query_sql, $query_param)->num_rows();
-			$config['base_url'] = CMS_URL.'?s='.urlencode($keyword).'&p=';
+			$config['total_rows'] = $this->db->query($query_sql, $query_param)->num_rows();//thực hiện câu lệnh truy vấn và trả về số dòng của kết quả
+
+			 $config['base_url'] = CMS_URL.'?s='.urlencode($keyword).'&p=';//Hàm này thuận tiện khi mã hóa một chuỗi được sử dụng trong phần truy vấn của URL,
 			$config['per_page'] = 9;
-			$total = ceil($config['total_rows']/$config['per_page']);
+			$total = ceil($config['total_rows']/$config['per_page']);//Trả về giá trị số nguyên cao nhất tiếp theo bằng cách làm tròn lên num nếu cần.
+			// kiểm tra số page có thể tồn tại
 			$page = ($page <= 0)?1:$page;
 			$page = ($page >= $total)?$total:$page;
 			$config['cms_cur_page'] = $page;
+			
 			if($total > 0){
+				
 				$page = $page - 1;
 				$this->pagination->initialize($config); 
 				$query_sql = 'SELECT * FROM '.CMS_PREFIX.'sanpham_item WHERE (`title` LIKE ? OR `description` LIKE ? OR `content` LIKE ?) LIMIT '.($page * $config['per_page']).', '.$config['per_page'];
+				
 				$query_param = array('%'.$keyword.'%', '%'.$keyword.'%', '%'.$keyword.'%');
 				$data['data']['list'] = $this->db->query($query_sql, $query_param)->result_array();
 				$data['data']['pagination'] = $this->pagination->create_links();
